@@ -10,9 +10,10 @@ const container = document.getElementById("container"); // "Traemos" utilizando 
  * Los datos se mostrarán dentro del div de id "container" y por cada ítem se está creando un nuevo párrafo donde se
  * imprime el campo "name" y el campo "lastname" separados por un espacio
  */
-function showData(dataArray) {
+async function showData(dataArray) {
   // El for itera sobre los elementos del array
-  for (const item of dataArray) {
+  let data = await dataArray;
+  for (const item of data) {
     // En la siguiente línea se utilizan "backticks" para armar el String. Más info => https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
@@ -25,16 +26,16 @@ async function dataEstudiantes() {
 
   if (promise.ok) {
     let datos_estudiantes = await promise.json();
-    showData(datos_estudiantes.students);
+    //showData(datos_estudiantes.students);
     return datos_estudiantes.students;
   } else {
     alert("Error");
   }
 }
 
-let datos = dataEstudiantes();
+//let datos = dataEstudiantes();
 
-//showData(dataEstudiantes());
+showData(dataEstudiantes());
 
 
 
